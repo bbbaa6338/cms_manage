@@ -12,8 +12,8 @@ import (
 func (z *ZBolg) SetSidebar() (err error) {
 
 	sidebar := []string{
-		"calendar", "previous", "authors", "catalog", "tags", "archives",
-		//"link",
+		"calendar", "previous", "catalog", "tags", "archives",
+		//"link","authors",
 	}
 
 	//var sidebar1, sidebar2, sidebar3, sidebar4, sidebar5, sidebar6, sidebar7, sidebar8, sidebar8 string
