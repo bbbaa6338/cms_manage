@@ -1,7 +1,6 @@
 package zbolg
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -68,69 +67,69 @@ func zBolgInstallTest() {
 	//	//	"【南京恒岳奥迪】位于浦口区浦珠北路42号，买奥迪！就到中升恒岳！")
 	//}
 
-	/// 添加分类及插件及模块
-	site := "tjsjgsbxg.com"
-
-	categories := map[string]string{
-		"市场行情": "实时更新奥迪A6二手车的市场价格动态和趋势分析。",
-		"估值工具": "提供在线工具，帮助用户快速评估奥迪A6二手车的市场价值。",
-		"车型对比": "对比不同年份和配置的奥迪A6二手车报价，方便用户挑选适合的车辆。",
-		"估值指南": "详解影响奥迪A6二手车报价的关键因素，如车龄、里程、车况等。",
-		"地区差异": "展示不同地区奥迪A6二手车报价的价格差异及市场特点。",
-		"谈判技巧": "分享在奥迪A6二手车交易中与卖家或买家谈判报价的技巧和经验。",
-		"热门车型": "介绍热门奥迪A6二手车型及其当前市场报价。",
-		"历史查询": "帮助用户查询奥迪A6二手车的历史记录，避免高估或低估车辆价值。",
-		"案例分析": "通过真实交易案例，解析影响奥迪A6二手车报价的实际因素及定价策略。",
-		"优惠汇总": "整合各大平台和经销商的奥迪A6二手车报价优惠活动，为用户提供参考。",
-	}
-
-	zb, err := NewZBolg(
-		ZBolg{
-			WebSite:    site,
-			InstallUrl: "http://" + site + "/zb_install/jsj.php",
-			LoginUrl:   "http://" + site + "/zb_system/jsj.php",
-			Host:       "38.181.29.193",
-			Port:       23301,
-		})
-	if err != nil {
-		fmt.Println(site + "初始化失败: " + err.Error())
-		panic(err)
-	}
-
-	db, _ := zb.DB.DB()
-	defer db.Close()
-
-	err = zb.Login()
-	if err != nil {
-		fmt.Println(site + "登录失败: " + err.Error())
-		panic(err)
-	}
-
-	err = zb.Plugin()
-	if err != nil {
-		fmt.Println(site + "插件失败: " + err.Error())
-		panic(err)
-	}
-
-	err = zb.WebSetting("title", "sub_title", "copy_right")
-	if err != nil {
-		fmt.Println(site + "网站设置失败: " + err.Error())
-		panic(err)
-	}
-
-	err = zb.SetSidebar()
-	if err != nil {
-		fmt.Println(site + "侧边栏设置失败: " + err.Error())
-		panic(err)
-	}
-
-	for s, s2 := range categories {
-		err := zb.AddCategory(s, s2, "0")
-		if err != nil {
-			fmt.Println(site + "添加分类失败: " + s + err.Error())
-			panic(err)
-		}
-	}
+	///// 添加分类及插件及模块
+	//site := "tjsjgsbxg.com"
+	//
+	//categories := map[string]string{
+	//	"市场行情": "实时更新奥迪A6二手车的市场价格动态和趋势分析。",
+	//	"估值工具": "提供在线工具，帮助用户快速评估奥迪A6二手车的市场价值。",
+	//	"车型对比": "对比不同年份和配置的奥迪A6二手车报价，方便用户挑选适合的车辆。",
+	//	"估值指南": "详解影响奥迪A6二手车报价的关键因素，如车龄、里程、车况等。",
+	//	"地区差异": "展示不同地区奥迪A6二手车报价的价格差异及市场特点。",
+	//	"谈判技巧": "分享在奥迪A6二手车交易中与卖家或买家谈判报价的技巧和经验。",
+	//	"热门车型": "介绍热门奥迪A6二手车型及其当前市场报价。",
+	//	"历史查询": "帮助用户查询奥迪A6二手车的历史记录，避免高估或低估车辆价值。",
+	//	"案例分析": "通过真实交易案例，解析影响奥迪A6二手车报价的实际因素及定价策略。",
+	//	"优惠汇总": "整合各大平台和经销商的奥迪A6二手车报价优惠活动，为用户提供参考。",
+	//}
+	//
+	//zb, err := NewZBolg(
+	//	ZBolg{
+	//		WebSite:    site,
+	//		InstallUrl: "http://" + site + "/zb_install/jsj.php",
+	//		LoginUrl:   "http://" + site + "/zb_system/jsj.php",
+	//		Host:       "38.181.29.193",
+	//		Port:       23301,
+	//	})
+	//if err != nil {
+	//	fmt.Println(site + "初始化失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//db, _ := zb.DB.DB()
+	//defer db.Close()
+	//
+	//err = zb.Login()
+	//if err != nil {
+	//	fmt.Println(site + "登录失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//err = zb.Plugin()
+	//if err != nil {
+	//	fmt.Println(site + "插件失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//err = zb.WebSetting("title", "sub_title", "copy_right")
+	//if err != nil {
+	//	fmt.Println(site + "网站设置失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//err = zb.SetSidebar()
+	//if err != nil {
+	//	fmt.Println(site + "侧边栏设置失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//for s, s2 := range categories {
+	//	err := zb.AddCategory(s, s2, "0")
+	//	if err != nil {
+	//		fmt.Println(site + "添加分类失败: " + s + err.Error())
+	//		panic(err)
+	//	}
+	//}
 
 }
 
