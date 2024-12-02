@@ -1,19 +1,47 @@
 package zbolg
 
 import (
+	"fmt"
 	"testing"
 )
 
 func zBolgInstallTest() {
 
-	site := "abcdz.cc"
+	site := "glzsbz.com"
 
-	NewZBolg(ZBolg{
+	zBolg, err := NewZBolg(ZBolg{
 		WebSite:    site,
 		InstallUrl: "http://" + site + "/zb_install/jsj.php",
 		LoginUrl:   "http://" + site + "/zb_system/jsj.php",
+		Host:       "38.181.29.193",
+		Port:       23301,
 	})
 
+	if err != nil {
+		panic(err)
+	}
+
+	db, _ := zBolg.DB.DB()
+	defer db.Close()
+
+	err = zBolg.Login()
+	if err != nil {
+		panic(err)
+	}
+
+	err = zBolg.SetSidebar()
+	if err != nil {
+		fmt.Println(site + "侧边栏设置失败: " + err.Error())
+		panic(err)
+	}
+
+	err = zBolg.Theme()
+	if err != nil {
+		panic(err)
+
+	} else {
+		fmt.Println("主题设置成功")
+	}
 	//sites := []string{"glzsbz.com", "wkstny.com", "zml1976.com", "xiongxincailiao.com", "zgznsq.com", "hgmrjtss.com", "skgdsb.com", "knwsfwx.com", "liqingf.com", "cqyfxx.com", "lyjlnk.com", "zzqjdc.com", "ylsqgj.com", "huazhongchaxun.com", "yfby888.com", "mayibanjia365.com", "tjsjgsbxg.com", "shy5188.com", "fullerence.com", "firedreamphoto.com", "shjd-edu.com", "slpaishuiban.com", "ynhrpzs.com", "zsb018.com", "zshongx.com", "shcdcc.com", "lcmygg.com", "hdsjxsb.com", "1cy37.com", "wsroujiamo.com", "jcks888.com", "wlguolv0038.com", "yachhf.com", "tjchangronggg.com", "bccsoy.com"}
 	//
 	//for _, site := range sites {

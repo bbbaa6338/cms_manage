@@ -1,6 +1,7 @@
 package zbolg
 
 import (
+	"cmsManage/utils/fake"
 	"cmsManage/utils/reqRequest"
 	"cmsManage/utils/setPWD"
 	"errors"
@@ -24,6 +25,12 @@ type ZBolg struct {
 	Host string // IP 地址，如：0.0.0.0
 	Port int    // 端口，如：8080
 
+	// TDK
+	Title       string // 标题
+	SubTitle    string // 副标题
+	Keywords    string // 关键字
+	Description string // 描述
+
 	// Login Info
 	//Username string // 用户名
 	//Password string // 密码
@@ -40,6 +47,12 @@ type ZBolg struct {
 	csrfToken string         // csrfToken, 后期数据的操作都需要这个 token
 	regexTag  *regexp.Regexp // 正则表达式，用于匹配 tag
 
+	theme        string // 主题
+	themeData    fake.WebFake
+	categoryIDs  []int      // 分类 ID
+	categoryInfo []Category // 分类信息
+	allCategory  []Category // 所有分类
+	articleIds   []int      // 文章 ID
 }
 
 // NewZBolg 创建一个 ZBolg 实例，并进行检查和初始化

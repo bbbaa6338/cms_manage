@@ -3,6 +3,7 @@ package zbolg
 import (
 	"errors"
 	"fmt"
+	"github.com/duke-git/lancet/v2/slice"
 	"github.com/duke-git/lancet/v2/strutil"
 	"strings"
 )
@@ -52,7 +53,7 @@ func (z *ZBolg) QueryInformation() (tagUrlConfig, userID, categories string, err
 
 	// 获取所有的用户ID
 	var us []ZPBMember
-	err = z.DB.Find(&us).Error
+	err = z.DB.Where("mem_Level = ?", 3).Find(&us).Error
 	if err != nil {
 		err = errors.New(z.WebSite + " ZPBMember 查询数据库出错 ：" + err.Error())
 		return
@@ -122,7 +123,7 @@ func QueryInformation(site, dbHost string, dbPort int) (tagUrlConfig, userID, ca
 
 	// 获取所有的用户ID
 	var us []ZPBMember
-	err = z.DB.Find(&us).Error
+	err = z.DB.Where("mem_Level = ?", 3).Find(&us).Error
 	if err != nil {
 		err = errors.New(z.WebSite + " ZPBMember 查询数据库出错 ：" + err.Error())
 		return
@@ -134,4 +135,58 @@ func QueryInformation(site, dbHost string, dbPort int) (tagUrlConfig, userID, ca
 	}
 	userID = strings.Join(userIDSlice, ",")
 	return
+}
+
+// GetArticleIds
+//
+//	@Description: 获取文章ID，仅获取前 200 条
+//	@receiver z
+//	@return articleIds
+//	@return err
+func (z *ZBolg) GetArticleIds() (articleIds []int, err error) {
+	var articles []ZPBPost
+	err = z.DB.Limit(20).Find(&articles).Error
+	if err != nil {
+		err = errors.New(z.WebSite + " ZbpPost 查询数据库出错 ：" + err.Error())
+		return
+	}
+
+	articleIds = make([]int, 0)
+	for _, v := range articles {
+		articleIds = append(articleIds, v.LogID)
+	}
+	return
+
+}
+
+// RandomArticleIds
+//
+//	@Description: 随机获取文章ID
+//	@receiver z
+//	@param articleIds
+//	@return ids
+//	@return err
+func (z *ZBolg) RandomArticleIds(articleIds []int, count int) (ids []string) {
+	r := 0 // 拼接链接的数量
+	if count < len(articleIds) {
+		r = count
+	} else {
+		r = count
+	}
+	s := 0
+	ids = make([]string, r)
+	for {
+		if s == r {
+			break
+		}
+		id, _ := slice.Random(articleIds)
+		if slice.Contain(ids, fmt.Sprintf("%d", id)) {
+			continue
+		} else {
+			ids[s] = fmt.Sprintf("%d", id)
+			s++
+		}
+	}
+	return
+
 }
