@@ -22,6 +22,8 @@ func (z *ZBolg) AddCategory(categoryName, Intro, addNavbar string) (err error) {
 		err = errors.New("AddCategory params is empty")
 		return
 	}
+	categoryName = strutil.Trim(categoryName)
+	Intro = strutil.Trim(Intro)
 
 	alias := toPinyin.ToPinyin(categoryName)
 

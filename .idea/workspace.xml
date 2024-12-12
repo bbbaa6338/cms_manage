@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="abd54bfe-b6a0-4014-bdd6-90ffa015a89b" name="Changes" comment="" />
+    <list default="true" id="abd54bfe-b6a0-4014-bdd6-90ffa015a89b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ex/ex/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/ex/ex/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/panel/panel_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/panel/panel_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zbolg/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/zbolg/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zbolg/plugin.go" beforeDir="false" afterPath="$PROJECT_DIR$/zbolg/plugin.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zbolg/theme.go" beforeDir="false" afterPath="$PROJECT_DIR$/zbolg/theme.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zbolg/web_setting.go" beforeDir="false" afterPath="$PROJECT_DIR$/zbolg/web_setting.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zbolg/zbolg_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/zbolg/zbolg_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.23.3" />
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.23.3.windows-amd64" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -28,6 +38,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Go Build.go build cmsManage/ex/ex.executor": "Run",
+    "Go Test.Test in cmsManage/zbolg.executor": "Run",
+    "Go Test.panel_test.go (1).executor": "Run",
+    "Go Test.panel_test.go.executor": "Run",
+    "Go Test.zbolg_test.go (1).executor": "Run",
+    "Go Test.zbolg_test.go (2).executor": "Run",
+    "Go Test.zbolg_test.go (3).executor": "Debug",
+    "Go Test.zbolg_test.go.executor": "Debug",
     "Go 测试.zbolg_test.go.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -37,14 +55,53 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/lalala/Code/goCode/cms_manage",
+    "last_opened_file_path": "D:/go_files/site_admin/server",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal"
+    "settings.editor.selected.configurable": "go.sdk"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.zbolg_test.go (3)">
+    <configuration name="go build cmsManage/ex/ex" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="cms_manage" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="cmsManage/ex/ex" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/ex/ex/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="panel_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="cms_manage" />
+      <working_directory value="$PROJECT_DIR$/panel" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/panel/panel_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zbolg_test.go (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="cms_manage" />
+      <working_directory value="$PROJECT_DIR$/zbolg" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/zbolg/zbolg_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zbolg_test.go (3)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="cms_manage" />
+      <working_directory value="$PROJECT_DIR$/zbolg" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/zbolg/zbolg_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
     <configuration name="zbolg_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="cms_manage" />
       <working_directory value="$PROJECT_DIR$/zbolg" />
@@ -57,7 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 测试.zbolg_test.go" />
+        <item itemvalue="Go Test.zbolg_test.go (3)" />
+        <item itemvalue="Go Build.go build cmsManage/ex/ex" />
+        <item itemvalue="Go Test.zbolg_test.go" />
+        <item itemvalue="Go Test.zbolg_test.go (2)" />
+        <item itemvalue="Go Test.panel_test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -75,5 +136,26 @@
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/zbolg/zbolg_test.go</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/zbolg/plugin.go</url>
+          <line>328</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/zbolg/zbolg_test.go</url>
+          <line>160</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

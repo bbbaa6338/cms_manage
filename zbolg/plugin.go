@@ -243,28 +243,28 @@ func (z *ZBolg) setPlugin() (err error) {
 				"is":        "1",
 				"host":      "",
 				"cate":      "",
-				"num":       "1",
+				"num":       "1-3",
 				"p":         "0",
 				"txt":       "",
 				"align":     "2",
 				"iv":        "2",
 				"links":     "",
 				"isthum":    "",
-				"istag":     "1",
+				"istag":     "0", // 更新为 "0"
 				"isatt":     "1",
-				"ixatt":     "10",
+				"ixatt":     "5", // 更新为 "5"
 				"ismode":    "0",
 				"proxy":     "0",
 				"tags":      "",
 				"catex":     "",
 				"isimg":     "1",
-				"iv1":       "",
-				"title":     "4",
-				"titles":    "0",
+				"iv1":       "1",   // 更新为 "1"
+				"title":     "1",   // 更新为 "1"
+				"titles":    "1-3", // 更新为 "1-3"
 				"ttf":       "",
 				"ttfile":    "",
 				"size":      "26",
-				"color":     "#FFFFFF",
+				"color":     "",
 				"bg":        "",
 				"top":       "0",
 				"box":       "5",
@@ -303,4 +303,33 @@ func (z *ZBolg) setPlugin() (err error) {
 	}
 
 	return
+}
+
+// LyCache
+//
+//	@Description: 老阳插件：百万数据库优化缓解服务器爆红
+//	@receiver z
+//	@return err
+func (z *ZBolg) LyCache(site string) (err error) {
+	response, err := z.Session.Get(reqRequest.RequestOption{
+		Url: "http://" + site + "/zb_users/plugin/ly_cache/main.php",
+	})
+
+	if err != nil {
+		return
+	}
+
+	if response.StatusCode != 200 {
+		err = errors.New(site + " LyCache error status code is not 200")
+		return
+	}
+
+	// 统计 tags 的数量
+	var tagsCount int64
+	err = z.DB.Model(&ZPBTag{}).Select("tag_ID").Count(&tagsCount).Error
+	if err != nil {
+		return
+	}
+
+	return err
 }

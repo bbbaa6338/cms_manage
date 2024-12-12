@@ -2,99 +2,225 @@ package zbolg
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 )
 
 func zBolgInstallTest() {
 
-	site := "glzsbz.com"
-
-	zBolg, err := NewZBolg(ZBolg{
-		WebSite:    site,
-		InstallUrl: "http://" + site + "/zb_install/jsj.php",
-		LoginUrl:   "http://" + site + "/zb_system/jsj.php",
-		Host:       "38.181.29.193",
-		Port:       23301,
-	})
-
-	if err != nil {
-		panic(err)
-	}
-
-	db, _ := zBolg.DB.DB()
-	defer db.Close()
-
-	err = zBolg.Login()
-	if err != nil {
-		panic(err)
-	}
-
-	err = zBolg.SetSidebar()
-	if err != nil {
-		fmt.Println(site + "侧边栏设置失败: " + err.Error())
-		panic(err)
-	}
-
-	err = zBolg.Theme()
-	if err != nil {
-		panic(err)
-
-	} else {
-		fmt.Println("主题设置成功")
-	}
-	//sites := []string{"glzsbz.com", "wkstny.com", "zml1976.com", "xiongxincailiao.com", "zgznsq.com", "hgmrjtss.com", "skgdsb.com", "knwsfwx.com", "liqingf.com", "cqyfxx.com", "lyjlnk.com", "zzqjdc.com", "ylsqgj.com", "huazhongchaxun.com", "yfby888.com", "mayibanjia365.com", "tjsjgsbxg.com", "shy5188.com", "fullerence.com", "firedreamphoto.com", "shjd-edu.com", "slpaishuiban.com", "ynhrpzs.com", "zsb018.com", "zshongx.com", "shcdcc.com", "lcmygg.com", "hdsjxsb.com", "1cy37.com", "wsroujiamo.com", "jcks888.com", "wlguolv0038.com", "yachhf.com", "tjchangronggg.com", "bccsoy.com"}
+	//kewords := []string{
+	//	"雷竞技raybet", "OB电竞", "雷火竞技", "oety欧亿体育", "MK体育", "平博pinnacle", "emc易倍体育", "yy易游", "MK体育", "火狐电竞", "东赢电竞", "开运电竞", "乐鱼电竞", "泛亚电竞", "爱游戏", "九游娱乐", "im电竞", "乐竞体育", "乐鱼体育", "九游体育", "必一运动", "金年会", "九游体育", "bwin必赢",
+	//}
+	////sites := []string{"glzsbz.com", "wkstny.com", "zml1976.com", "xiongxincailiao.com", "zgznsq.com", "hgmrjtss.com", "skgdsb.com", "knwsfwx.com", "liqingf.com", "cqyfxx.com", "lyjlnk.com", "zzqjdc.com", "ylsqgj.com", "huazhongchaxun.com", "yfby888.com", "mayibanjia365.com", "tjsjgsbxg.com", "shy5188.com", "fullerence.com", "firedreamphoto.com", "shjd-edu.com", "slpaishuiban.com", "ynhrpzs.com", "zsb018.com", "zshongx.com", "shcdcc.com", "lcmygg.com", "hdsjxsb.com", "1cy37.com", "wsroujiamo.com", "jcks888.com", "wlguolv0038.com", "yachhf.com", "tjchangronggg.com", "bccsoy.com"}
+	//sites := map[string]string{
+	//	"tjsjgsbxg.com": "奥迪a6",
+	//	//"bccsoy.com": "车过户", "cqyfxx.com": "二手车报价", "firedreamphoto.com": "宝马5系", "fullerence.com": "宝马", "glzsbz.com": "3系", "hdsjxsb.com": "豪华", "hgmrjtss.com": "两厢", "huazhongchaxun.com": "奔驰", "jcks888.com": "车价格", "knwsfwx.com": "二手车价格", "lcmygg.com": "沃尔沃", "liqingf.com": "二手车图片", "lyjlnk.com": "什么车", "mayibanjia365.com": "奥迪a6", "shcdcc.com": "汽车过户", "shjd-edu.com": "小车", "shy5188.com": "威驰", "skgdsb.com": "事故车", "slpaishuiban.com": "排量", "tjchangronggg.com": "车检", "wkstny.com": "5系", "wlguolv0038.com": "车多少钱", "wsroujiamo.com": "起亚", "xiongxincailiao.com": "suv车", "yachhf.com": "车报价", "yfby888.com": "奔驰报价", "ylsqgj.com": "天籁", "ynhrpzs.com": "敞篷", "zgznsq.com": "一辆", "zml1976.com": "a4奥迪", "zsb018.com": "桑塔纳", "zshongx.com": "比亚迪", "zzqjdc.com": "吉利",
+	//}
+	//for site, key := range sites {
 	//
-	//for _, site := range sites {
-	//	if site == "bccsoy.com" {
-	//		continue
-	//	}
-	//	zb, err := NewZBolg(
-	//		ZBolg{
-	//			WebSite:    site,
-	//			InstallUrl: "http://" + site + "/zb_install/jsj.php",
-	//			LoginUrl:   "http://" + site + "/zb_system/jsj.php",
-	//			Host:       "38.181.29.193",
-	//			Port:       23301,
-	//			//Username:   "admin",
-	//			//Password:   "admin",
-	//		})
+	//	title, _ := slice.Random(kewords)
+	//	zBolg, err := NewZBolg(ZBolg{
+	//		WebSite:     site,
+	//		InstallUrl:  "http://" + site + "/zb_install/jsj.php",
+	//		LoginUrl:    "http://" + site + "/zb_system/jsj.php",
+	//		Host:        "38.181.29.193",
+	//		Port:        23301,
+	//		Title:       title,
+	//		SubTitle:    "首页",
+	//		Description: "专注于汽车" + key + "的网站",
+	//	})
+	//
 	//	if err != nil {
-	//		fmt.Println(site + "初始化失败: " + err.Error())
 	//		panic(err)
 	//	}
 	//
-	//	db, _ := zb.DB.DB()
+	//	db, _ := zBolg.DB.DB()
 	//	defer db.Close()
 	//
-	//	err = zb.Install()
+	//	err = zBolg.Login()
 	//	if err != nil {
-	//		fmt.Println(site + "安装失败: " + err.Error())
 	//		panic(err)
 	//	}
 	//
-	//	err = zb.Login()
+	//	err = zBolg.SetSidebar()
 	//	if err != nil {
-	//		fmt.Println(site + "登录失败: " + err.Error())
+	//		fmt.Println(site + "侧边栏设置失败: " + err.Error())
 	//		panic(err)
 	//	}
-	//	fmt.Println(site + "登录成功, 安装成功")
 	//
-	//	// 查询
-	//	//_, _, _, err = zb.QueryInformation()
-	//	//if err != nil {
-	//	//	panic(err)
-	//	//}
-	//	//
-	//	//QueryInformation("abcdz.cc", "38.181.25.59", 23301)
+	//	err = zBolg.Theme()
+	//	if err != nil {
+	//		panic(err)
 	//
-	//	err = zb.Plugin()
-	//	fmt.Println(err)
+	//	} else {
+	//		fmt.Println("主题设置成功")
+	//	}
+	//}
+	//site := "baidu.shzhuozhong.com"
 	//
-	//	category := "分类1&2啊啊"
-	//	zb.AddCategory(category, "分类1的简介", "0")
+	//zBolg, err := NewZBolg(ZBolg{
+	//	WebSite:    site,
+	//	InstallUrl: "http://" + site + "/zb_install/jsj.php",
+	//	LoginUrl:   "http://" + site + "/zb_system/jsj.php",
+	//	Host:       "38.181.29.193",
+	//	Port:       23301,
+	//})
 	//
-	//	err = zb.WebSetting("title", "sub_title", "copy_right")
-	//	err = zb.SetSidebar()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//db, _ := zBolg.DB.DB()
+	//defer db.Close()
+	//
+	//err = zBolg.Login()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//err = zBolg.SetSidebar()
+	//if err != nil {
+	//	fmt.Println(site + "侧边栏设置失败: " + err.Error())
+	//	panic(err)
+	//}
+	//
+	//err = zBolg.Theme()
+	//if err != nil {
+	//	panic(err)
+	//
+	//} else {
+	//	fmt.Println("主题设置成功")
+	//}
+	siteString := `shcdcc.com
+ylsqgj.com
+1cy37.com
+shjd-edu.com
+zsb018.com
+bccsoy.com
+mayibanjia365.com
+wlguolv0038.com
+fullerence.com
+wkstny.com
+knwsfwx.com
+shy5188.com
+www.kslzfsa.com
+ynhrpzs.com
+zzqjdc.com
+firedreamphoto.com
+zgznsq.com
+huazhongchaxun.com
+xzxlxh.com
+yachhf.com
+zml1976.com
+tjsjgsbxg.com
+hgmrjtss.com
+hdsjxsb.com
+slpaishuiban.com
+zshongx.com
+wsroujiamo.com
+glzsbz.com
+jcks888.com
+yfby888.com
+liqingf.com
+lyjlnk.com
+skgdsb.com
+xiongxincailiao.com
+cqyfxx.com
+gdlingji.com
+www.hyxwangshunxnyyxgst.com
+lcmygg.com
+tjchangronggg.com`
+
+	sites := strings.Split(siteString, "\n")
+	for _, site := range sites {
+
+		zb, err := NewZBolg(
+			ZBolg{
+				WebSite:    site,
+				InstallUrl: "http://" + site + "/zb_install/jsj.php",
+				LoginUrl:   "http://" + site + "/zb_system/jsj.php",
+				Host:       "38.181.29.193",
+				Port:       23301,
+				//Username:   "admin",
+				//Password:   "admin",
+			})
+		if err != nil {
+			fmt.Println(site + "初始化失败: " + err.Error())
+			panic(err)
+		}
+
+		db, _ := zb.DB.DB()
+		defer db.Close()
+
+		//err = zb.Install()
+		//if err != nil {
+		//	fmt.Println(site + "安装失败: " + err.Error())
+		//	panic(err)
+		//}
+
+		err = zb.Login()
+		if err != nil {
+			fmt.Println(site + "登录失败: " + err.Error())
+			panic(err)
+		}
+		fmt.Println(site + "登录成功, 安装成功")
+
+		// 开启缓存
+		err = zb.LyCache(site)
+
+		//err = zb.Plugin()
+		//fmt.Println(err)
+		//
+		//err = zb.WebSetting("title", "sub_title", "copy_right")
+		//err = zb.SetSidebar()
+		//
+		//err = zb.Theme()
+		//if err != nil {
+		//	panic(err)
+		//
+		//} else {
+		//	fmt.Println("主题设置成功")
+		//}
+
+		//categories := map[string]string{
+		//	"清洁燃料":   "提供高效、环保的清洁燃料产品，广泛应用于民用炊事和工业用途。",
+		//	"智能管理系统": "基于物联网技术的能源管理系统，实现实时监控和高效运营。",
+		//	"可再生能源":  "涵盖太阳能、风能等多种新能源解决方案，推动绿色能源应用。",
+		//	"节能减排":   "通过优化产品和技术，帮助客户实现节能减排目标，推动低碳经济发展。",
+		//	"本地经济发展": "助力本地经济建设，为衡阳县居民提供就业机会并节约能源成本。",
+		//	"技术创新":   "聚焦新能源技术研发，结合数字化管理和生产工艺，持续提升产品价值。",
+		//	"安全保障":   "采用先进的数字化管理技术，确保能源使用过程的安全性和高效性。",
+		//	"社会责任":   "关注环保与社区发展，积极履行社会责任，为社会带来长远价值。",
+		//}
+		//for s, s2 := range categories {
+		//	err := zb.AddCategory(s, s2, "1")
+		//	if err != nil {
+		//		fmt.Println(site + "添加分类失败: " + err.Error())
+		//		panic(err)
+		//	} else {
+		//		fmt.Println(site + "添加分类成功")
+		//	}
+		//
+		//}
+	}
+
+	// 查询
+	//_, _, _, err = zb.QueryInformation()
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//QueryInformation("abcdz.cc", "38.181.25.59", 23301)
+
+	//err = zb.Plugin()
+	//fmt.Println(err)
+	//
+	////category := "分类1&2啊啊"
+	////zb.AddCategory(category, "分类1的简介", "0")
+	//
+	//err = zb.WebSetting("title", "sub_title", "copy_right")
+	//err = zb.SetSidebar()
+
 	//
 	//	//err = zb.ArticleUpdate("abcdz.cc", "1", "11",
 	//	//	"豪华家用轿车之争:奥迪A6L值得入手吗?",
@@ -102,7 +228,7 @@ func zBolgInstallTest() {
 	//	//	"恒岳,奥迪,奥迪A6",
 	//	//	"【南京恒岳奥迪】位于浦口区浦珠北路42号，买奥迪！就到中升恒岳！")
 	//}
-
+	//
 	///// 添加分类及插件及模块
 	//site := "tjsjgsbxg.com"
 	//
@@ -171,4 +297,10 @@ func zBolgInstallTest() {
 
 func Test(t *testing.T) {
 	zBolgInstallTest()
+
+	//rs := "https://dns.aizhan.com/168.76.230."
+	//
+	//for i := 22; i < 111; i++ {
+	//	fmt.Println(rs + fmt.Sprintf("%d/", i))
+	//}
 }

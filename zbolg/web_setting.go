@@ -8,6 +8,10 @@ import (
 )
 
 func (z *ZBolg) WebSetting(title, subTitle, copyright string) (err error) {
+	//if title == "" || subTitle == "" || copyright == "" {
+	//	err = errors.New("TDK 参数不能为空")
+	//	return
+	//}
 	// 查询基础的数据
 	keys := []string{"ZC_BLOG_NAME", "ZC_BLOG_SUBNAME", "ZC_BLOG_COPYRIGHT"}
 
